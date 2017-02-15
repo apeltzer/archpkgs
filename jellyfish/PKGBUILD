@@ -1,0 +1,42 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=jellyfish-pythonbound
+pkgver=2.2.4
+pkgrel=1
+pkgdesc="fast, memory-efficient counting of k-mers in DNA"
+arch=('i686' 'x86_64')
+url="http://www.genome.umd.edu/jellyfish.html"
+license=('GPL3')
+depends=('gcc-libs' 'swig' 'python3')
+checkdepends=('time')
+provides=('jellyfish-pythonbound')
+conflicts=('jellyfish-pythonbound')
+source=("https://github.com/gmarcais/Jellyfish/releases/download/v$pkgver/jellyfish-$pkgver.tar.gz")
+md5sums=('9d9f34aaa01f6793bc37f76878ecf5ed')
+
+prepare() {
+  cd $srcdir/jellyfish-$pkgver
+
+  sed -e 's|-Dprivate=public||' \
+      -i Makefile.in
+}
+
+build() {
+  cd $srcdir/jellyfish-$pkgver
+
+  ./configure --prefix=/usr --enable-swig --enable-python-binding
+
+  make
+}
+
+check() {
+  cd $srcdir/jellyfish-$pkgver
+
+  make check
+}
+
+package() {
+  cd $srcdir/jellyfish-$pkgver
+
+  make DESTDIR=$pkgdir install
+}

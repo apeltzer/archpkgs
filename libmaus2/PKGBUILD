@@ -1,0 +1,33 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=libmaus2
+pkgver=2.0.113
+pkgrel=20151207151315
+pkgdesc="Collection of data structures and algorithms"
+arch=('i686' 'x86_64')
+url="https://github.com/gt1/libmaus2"
+license=('GPL3 GPL2')
+depends=('boost boost-libs autoconf automake libtool')
+provides=('libmaus2')
+conflicts=('libmaus2')
+source=("https://github.com/gt1/$pkgname/archive/$pkgver-release-$pkgrel.tar.gz")
+md5sums=('c1d6c542cd456f09fe2453cc44e551f4')
+
+prepare() {
+  cd $srcdir/$pkgname-$pkgver
+
+  autoreconf -i -f
+}
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+  ./configure
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+  mkdir -p $pkgdir/opt/seqtk
+  cp * $pkgdir/opt/seqtk
+}

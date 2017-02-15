@@ -1,0 +1,29 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=bioawk
+pkgver=1
+pkgrel=0
+pkgdesc="BWK awk modified for biological data"
+arch=('i686' 'x86_64')
+url="https://github.com/lh3/bioawk"
+license=('MIT')
+depends=('gcc-libs')
+provides=('bioawk')
+conflicts=('bioawk')
+source=("https://github.com/lh3/bioawk/archive/v$pkgver.$pkgrel.tar.gz")
+md5sums=('a2d0dbb2943b3e0bea96a5360390b656')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver.$pkgrel
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver.$pkgrel
+
+  sudo mkdir -p $pkgdir/opt/bioawk
+  sudo mkdir -p $pkgdir/usr/bin/bioawk
+  sudo cp -R * $pkgdir/opt/bioawk
+
+  sudo ln -s $pkgdir/opt/bioawk/bioawk $pkgdir/usr/bin/bioawk
+}

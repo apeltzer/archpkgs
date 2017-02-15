@@ -1,0 +1,24 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+pkgname='python-fastcluster'
+pkgver=1.1.20
+pkgrel=1
+pkgdesc="Fast hierarchical clustering routines for R and Python."
+arch=('x86_64')
+url="https://pypi.python.org/pypi/fastcluster"
+license=('BSD')
+groups=()
+depends=('python')
+makedepends=('python-setuptools' 'python-numpy>=1.9.2')
+provides=('python-fastcluster')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://pypi.python.org/packages/15/59/c178f5df803b450e7eca5ac5c7940b467b04f1023e04eab34eed7320cf66/fastcluster-${pkgver}.tar.gz")
+md5sums=('4f15531a99ce0f203761b0e31d7ca53c')
+
+package() {
+  cd "$srcdir/fastcluster-$pkgver"
+  python setup.py install --root="$pkgdir/" --optimize=1
+}

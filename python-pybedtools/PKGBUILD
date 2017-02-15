@@ -1,0 +1,24 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+pkgname='python-pybedtools'
+pkgver=0.7.7
+pkgrel=1
+pkgdesc="Python wrapper -- and more -- for Aaron Quinlan's BEDTools (bioinformatics tools)."
+arch=('x86_64')
+url="http://daler.github.io/pybedtools"
+license=('GPL2')
+groups=()
+depends=('python')
+makedepends=('python-setuptools')
+provides=('python-pybedtools')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/daler/pybedtools/archive/v${pkgver}.tar.gz")
+md5sums=('8bd20d4442149ea5e7c2c76d522eef16')
+
+package() {
+  cd "${srcdir}/pybedtools-${pkgver}"
+  python setup.py install --root="${pkgdir}/" --optimize=1
+}

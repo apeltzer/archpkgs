@@ -1,0 +1,30 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=bam-readcount
+pkgver=0.7.4
+pkgrel=1
+pkgdesc="Count DNA sequence reads in BAM files"
+arch=('i686' 'x86_64')
+url="https://github.com/genome/bam-readcount"
+license=('MIT')
+depends=('gcc-libs' 'cmake')
+provides=('bam-readcount')
+conflicts=('bam-readcount')
+source=("https://github.com/genome/bam-readcount/archive/v$pkgver.tar.gz")
+md5sums=('db9b0d0c7379bfae65b76cae801c5db9')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  cmake $srcdir/$pkgname-$pkgver
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver/
+
+  sudo mkdir -p $pkgdir/opt/bam-readcount
+  sudo cp -R * $pkgdir/opt/bam-readcount
+
+  sudo ln -s $pkgdir/opt/bam-readcount/bin/bam-readcount $pkgdir/usr/bin/bam-readout
+}

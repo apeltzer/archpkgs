@@ -1,0 +1,27 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=seqtk
+pkgver=sgdp
+pkgrel=1
+pkgdesc="Toolkit for processing sequences in FASTA/Q formats"
+arch=('i686' 'x86_64')
+url="https://github.com/lh3/seqtk"
+license=('MIT')
+depends=('gcc-libs')
+provides=('seqtk')
+conflicts=('seqtk')
+source=("https://github.com/lh3/seqtk/archive/$pkgver.tar.gz")
+md5sums=('c1d6c542cd456f09fe2453cc44e551f4')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+  mkdir -p $pkgdir/opt/seqtk
+  cp * $pkgdir/opt/seqtk
+}

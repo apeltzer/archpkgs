@@ -1,0 +1,26 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+pkgname='python-skbio'
+pkgver=0.4.2
+pkgrel=1
+pkgdesc="scikit-bio is an open-source, BSD-licensed, Python package providing \
+         data structures, algorithms, and educational resources for \
+         bioinformatics."
+arch=('x86_64')
+url="http://scikit-bio.org/"
+license=('BSD')
+groups=()
+depends=('python')
+makedepends=('python-setuptools' 'python-numpy>=1.9.2')
+provides=('python-skbio')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/biocore/scikit-bio/archive/${pkgver}.tar.gz")
+md5sums=('e4f60f4e91e5464ce2458589d7b3e915')
+
+package() {
+  cd "$srcdir/scikit-bio-$pkgver"
+  python setup.py install --root="$pkgdir/" --optimize=1
+}
