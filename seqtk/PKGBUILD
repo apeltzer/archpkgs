@@ -1,8 +1,8 @@
 # Maintainer: Clint Valentine <valentine.clint@gmail.com>
 
 pkgname=seqtk
-pkgver=sgdp
-pkgrel=1
+pkgver=1.2
+pkgrel=2
 pkgdesc="Toolkit for processing sequences in FASTA/Q formats"
 arch=('i686' 'x86_64')
 url="https://github.com/lh3/seqtk"
@@ -10,8 +10,8 @@ license=('MIT')
 depends=('gcc-libs')
 provides=('seqtk')
 conflicts=('seqtk')
-source=("https://github.com/lh3/seqtk/archive/$pkgver.tar.gz")
-md5sums=('c1d6c542cd456f09fe2453cc44e551f4')
+source=("https://github.com/lh3/seqtk/archive/v$pkgver.tar.gz")
+md5sums=('255ffe05bf2f073dc57abcff97f11a37')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
@@ -22,10 +22,11 @@ build() {
 package() {
   cd $srcdir/$pkgname-$pkgver
 
-  sudo mkdir -p $pkgdir/opt/seqtk
-  sudo cp -R * $pkgdir/opt/seqtk
+  mkdir -p $pkgdir/opt/$pkgname-$pkgver
+  mkdir -p $pkgdir/usr/bin
 
-  sudo ln -s $pkgdir/opt/seqtk/seqtk $pkgdir/usr/bin/seqtk
-  sudo ln -s $pkgdir/opt/seqtk/tabtk $pkgdir/usr/bin/tabtk
-  sudo ln -s $pkgdir/opt/seqtk/trimadap $pkgdir/usr/bin/trimadap
+  cp -R seqtk $pkgdir/opt/$pkgname-$pkgver
+
+
+  ln -s $pkgdir/opt/$pkgname-$pkgver/seqtk $pkgdir/usr/bin/seqtk
 }

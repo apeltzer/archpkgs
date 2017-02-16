@@ -7,28 +7,19 @@ pkgdesc="The bcl2fastq2 Conversion Software v2.17 can be used to convert BCL fil
 arch=('i686' 'x86_64')
 url="https://support.illumina.com/downloads/bcl2fastq-conversion-software-v$pkgver.html"
 license=('Proprietary')
-depends=('gcc-libs')
+depends=('rpmextract')
 provides=('bcl2fastq2')
 conflicts=('bcl2fastq2')
-source=("ftp://webdata2:webdata2@ussd-ftp.illumina.com/downloads/software/bcl2fastq/bcl2fastq2-v$pkgver.tar.zip")
-md5sums=('7426226c6db095862e636b95c38608d3')
+source=("ftp://webdata2:webdata2@ussd-ftp.illumina.com/downloads/software/bcl2fastq/bcl2fastq2-v2.17.1.14-Linux-x86_64.zip")
+md5sums=('927f15930ae40392c718059d6147d1a3')
 
 build() {
-  cd $srcdir/
+	cd ${srcdir}
 
-  # Unpack what makepkg unzipped for us.
-  tar -xvf $pkgname-v$pkgver.tar.gz
-
-  mkdir -p $srcdir/${pkgname::-1}/$pkgname-build/
-
-  cd $srcdir/${pkgname::-1}/$pkgname-build/
-  $srcdir/${pkgname::-1}/src/configure
-
-  make
+	rpmextract.sh bcl2fastq2-v2.17.1.14-Linux-x86_64.rpm
 }
 
 package() {
-  cd $srcdir/${pkgname::-1}/$pkgname-build/
-
-  make DESTDIR=$pkgdir install
+	mkdir -p ${pkgdir}/usr
+	cp -r ${srcdir}/usr/* ${pkgdir}/usr/
 }

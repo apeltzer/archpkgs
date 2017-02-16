@@ -11,23 +11,23 @@ depends=('boost boost-libs autoconf automake libtool')
 provides=('libmaus2')
 conflicts=('libmaus2')
 source=("https://github.com/gt1/$pkgname/archive/$pkgver-release-$pkgrel.tar.gz")
-md5sums=('c1d6c542cd456f09fe2453cc44e551f4')
+md5sums=('cf8afa969b837fcb4deddb9700f85770')
 
-prepare() {
-  cd $srcdir/$pkgname-$pkgver
-
-  autoreconf -i -f
-}
-
-build() {
-  cd $srcdir/$pkgname-$pkgver
-  ./configure
-  make
-}
-
-package() {
-  cd $srcdir/$pkgname-$pkgver
-
-  mkdir -p $pkgdir/opt/seqtk
-  cp * $pkgdir/opt/seqtk
-}
+# prepare() {
+#   cd $srcdir/$pkgname-$pkgver
+#
+#   autoreconf -i -f
+# }
+#
+# build() {
+#   cd $srcdir/$pkgname-$pkgver
+#   ./configure
+#   make
+# }
+#
+# package() {
+#   cd $srcdir/$pkgname-$pkgver
+#
+#   mkdir -p $pkgdir/opt/seqtk
+#   cp * $pkgdir/opt/seqtk
+# }

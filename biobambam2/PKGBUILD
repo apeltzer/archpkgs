@@ -1,20 +1,23 @@
 # Maintainer: Clint Valentine <valentine.clint@gmail.com>
 
-pkgname=seqtk
-pkgver=sgdp
-pkgrel=1
-pkgdesc="Toolkit for processing sequences in FASTA/Q formats"
+pkgname=biobambam2
+pkgver=2.0.65-release-20161130121735
+pkgrel=20161130121735
+pkgdesc="Tools for early stage alignment file processing"
 arch=('i686' 'x86_64')
-url="https://github.com/lh3/seqtk"
-license=('MIT')
-depends=('gcc-libs')
-provides=('seqtk')
-conflicts=('seqtk')
-source=("https://github.com/lh3/seqtk/archive/$pkgver.tar.gz")
+url="https://github.com/gt1/biobambam2"
+license=('GPL3')
+depends=('gcc-libs libmaus2')
+provides=('biobambam2')
+conflicts=('biobambam2')
+source=("https://github.com/gt1/$pkgname/archive/$pkgver.tar.gz
+")
 md5sums=('c1d6c542cd456f09fe2453cc44e551f4')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
+
+  ./configure
 
   make
 }
@@ -22,6 +25,8 @@ build() {
 package() {
   cd $srcdir/$pkgname-$pkgver
 
-  mkdir -p $pkgdir/opt/seqtk
-  cp * $pkgdir/opt/seqtk
+  mkdir -p $pkgdir/opt/$pkgname-$pkgver
+  cp -R * $pkgdir/opt/$pkgname-$pkgver
+
+  #ln -s $pkgdir/opt/$pkgname-$pkgver/biobambam2 $pkgdir/usr/bin/biobambam2
 }
