@@ -1,0 +1,25 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname='python-pyBigWig'
+pkgver=0.3.2
+pkgrel=2
+pkgdesc="A python extension for quick access to bigWig and bigBed files."
+arch=('x86_64')
+url="https://github.com/VDBWRAIR/pyBWA"
+license=('MIT')
+groups=()
+depends=('python' 'libbigwig')
+makedepends=('python-setuptools')
+provides=('python-pyBigWig')
+conflicts=('python-pyBigWig')
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/dpryan79/pyBigWig/archive/${pkgver}.tar.gz")
+md5sums=('cfc404033838f844ea37388b96f2b28a')
+
+package() {
+  cd "$srcdir/pyBigWig-$pkgver"
+  python2 setup.py install --root="$pkgdir/" --optimize=1
+}

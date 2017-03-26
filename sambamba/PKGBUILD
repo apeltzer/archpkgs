@@ -1,0 +1,38 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=sambamba
+pkgver=0.6.5
+pkgrel=5
+pkgdesc="Tools for working with SAM/BAM data"
+arch=('i686' 'x86_64')
+url="https://github.com/lomereiter/sambamba"
+license=('GPL2')
+depends=('gcc-libs')
+provides=('sambamba')
+conflicts=('sambamba')
+source=("git+https://github.com/lomereiter/sambamba.git#commit=48701f1dd8cc250ac165f88d29441ee9aa519042"
+        "git+https://github.com/biod/BioD.git#commit=1248586b54af4bd4dfb28ebfebfc6bf012e7a587"
+        "git+https://github.com/lomereiter/htslib.git#commit=2f3c3ea7b301f9b45737a793c0b2dcf0240e5ee5"
+        "git+https://github.com/lz4/lz4.git#commit=d86dc916771c126afb797637dda9f6421c0cb998")
+md5sums=('SKIP SKIP SKIP SKIP')
+
+build() {
+  cd $srcdir/${pkgname}
+  git submodule init
+  git config submodule.
+  # https://wiki.archlinux.org/index.php/VCS_package_guidelines#Git_Submodules
+
+  # FINISH THIS CLINT
+
+  #make sambamba-ldmd2-64
+}
+
+package() {
+    echo hi
+#  cd $srcdir/$pkgname-$pkgver
+#
+#  mkdir -p $pkgdir/opt/$pkgname-$pkgver
+#  cp -R * $pkgdir/opt/$pkgname-$pkgver
+#
+#  #ln -s $pkgdir/opt/$pkgname-$pkgver/biobambam2 $pkgdir/usr/bin/biobambam2
+}

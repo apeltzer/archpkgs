@@ -1,0 +1,25 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname='python-multiqc'
+pkgver=0.9
+pkgrel=1
+pkgdesc="Aggregate results from bioinformatics analyses across many samples into a single report."
+arch=('x86_64')
+url="https://github.com/ewels/MultiQC"
+license=('GPL3')
+groups=()
+depends=('python')
+makedepends=('python-setuptools' 'python-jinja' 'python-simplejson' 'python-spectra' 'python-yaml' 'python-click' 'python-numpy>=1.9.2' 'python-matplotlib')
+provides=('python-multiqc')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/ewels/MultiQC/archive/v${pkgver}.tar.gz")
+md5sums=('332cb167463a0d96ab391ccdabaad1da')
+
+package() {
+  cd "$srcdir/MultiQC-$pkgver"
+  python setup.py install --root="$pkgdir/" --optimize=1
+}
