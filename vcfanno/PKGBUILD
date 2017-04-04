@@ -1,0 +1,23 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=vcfanno
+pkgver=0.2.4
+pkgrel=1
+pkgdesc="Annotate a VCF with other VCFs/BEDs/tabixed files"
+arch=('i686' 'x86_64')
+url="https://github.com/brentp/vcfanno"
+license=('MIT')
+depends=('')
+provides=('vcfanno')
+conflicts=('vcfanno')
+source=("https://github.com/brentp/vcfanno/releases/download/v${pkgver}/vcfanno_linux64")
+md5sums=('26ec9c8b3a3bdee3b0dad8ac9f7351f8')
+
+build() {
+    chmod 775 ${srcdir}/vcfanno_linux64
+}
+
+package() {
+    mkdir -p ${pkgdir}/usr/bin
+    cp ${srcdir}/vcfanno_linux64 ${pkgdir}/usr/bin/vcfanno
+}

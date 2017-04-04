@@ -1,0 +1,24 @@
+
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=variant-effect-predictor
+pkgver=88
+pkgrel=1
+pkgdesc="VEP determines the effect of your variants on genes"
+arch=('i686' 'x86_64')
+url="http://uswest.ensembl.org/info/docs/tools/vep/index.html"
+license=('MIT')
+depends=('')
+provides=('variant-effect-predictor')
+conflicts=('variant-effect-predictor')
+source=("https://github.com/Ensembl/ensembl-tools/archive/release/88.zip")
+md5sums=('778a66e53059600ab67312525aa198f8')
+
+build() {
+    unzip ${srcdir}/88.zip
+}
+
+package() {
+    mkdir -p ${pkgdir}/usr/bin
+    cp ${srcdir}/vcfanno_linux64 ${pkgdir}/usr/bin/vcfanno
+}

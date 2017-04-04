@@ -1,0 +1,24 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+pkgname='python-pydna'
+pkgver=2.0.0a3
+pkgrel=1
+pkgdesc="Classes and code for representing double stranded DNA and functions for simulating homologous recombination and Gibson assembly."
+arch=('x86_64')
+url="https://github.com/BjornFJohansson/pydna"
+license=('MIT')
+groups=()
+depends=('python')
+makedepends=('python-setuptools python-pypandoc')
+provides=('python-pydna')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/BjornFJohansson/pydna/archive/${pkgver}.tar.gz")
+md5sums=('4298191c6e718baeaa14f23179d03810')
+
+package() {
+  cd "$srcdir/pydna-$pkgver"
+  python2 setup.py install --root="$pkgdir/" --optimize=1
+}

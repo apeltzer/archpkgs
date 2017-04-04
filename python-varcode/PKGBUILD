@@ -1,0 +1,24 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+pkgname='python-varcode'
+pkgver=0.5.13
+pkgrel=1
+pkgdesc="Library for manipulating genomic variants and predicting their effects."
+arch=('x86_64')
+url="https://github.com/hammerlab/varcode"
+license=('Apache2')
+groups=()
+depends=('python')
+makedepends=('python-setuptools')
+provides=('python-varcode')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/hammerlab/varcode/archive/v${pkgver}.tar.gz")
+md5sums=('8a710c8d8c773f76fcc58b32bd7f1662')
+
+package() {
+  cd "${srcdir}/varcode-${pkgver}"
+  python setup.py install --root="${pkgdir}/" --optimize=1
+}

@@ -1,0 +1,24 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+pkgname='python-pyensembl'
+pkgver=1.0.1
+pkgrel=1
+pkgdesc="Python interface to ensembl reference genome metadata (exons, transcripts, etc...)."
+arch=('x86_64')
+url="https://github.com/hammerlab/pyensembl"
+license=('Apache2')
+groups=()
+depends=('python')
+makedepends=('python-setuptools')
+provides=('python-pyensembl')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/hammerlab/pyensembl/archive/v${pkgver}.tar.gz")
+md5sums=('1f701efbd3b810747b8d0b86aaef79f0')
+
+package() {
+  cd "${srcdir}/pyensembl-${pkgver}"
+  python setup.py install --root="${pkgdir}/" --optimize=1
+}
