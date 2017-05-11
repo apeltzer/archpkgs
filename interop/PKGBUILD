@@ -1,0 +1,25 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname='python-interop'
+pkgver=1.0.24
+pkgrel=1
+pkgdesc="C++ Library to parse Illumina InterOp files."
+arch=('x86_64')
+url="https://github.com/Illumina/interop"
+license=('GPL3')
+groups=()
+depends=('python')
+makedepends=('python-setuptools')
+provides=('python-interop')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/Illumina/interop/releases/download/v${pkgver}/InterOp-${pkgver}-Linux-GNU-4.8.2.tar.gz")
+md5sums=('f7e373da6052abb436e6e40777921c4e')
+
+package() {
+  cd ${srcdir}/InterOp-${pkgver}-Linux-GNU-4.8.2
+  python setup.py install --root="${pkgdir}/" --optimize=1
+}

@@ -1,0 +1,27 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=genometools
+pkgver=1.5.9
+pkgrel=1
+pkgdesc="GenomeTools genome analysis system"
+arch=('i686' 'x86_64')
+url="http://genometools.org/"
+license=('ISC')
+depends=('gcc-libs')
+provides=('genometools')
+conflicts=('genometools')
+source=("https://github.com/genometools/genometools/archive/v$pkgver.tar.gz")
+md5sums=('a23d60ae42a48ef2e8e26f0f9f227bcb')
+
+
+build() {
+  cd $srcdir/genometools-$pkgver
+
+  make -j4
+}
+
+package() {
+  cd $srcdir/genometools-$pkgver
+
+  sudo make -j4 install
+}

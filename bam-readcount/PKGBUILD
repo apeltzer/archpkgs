@@ -1,0 +1,26 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname=bam-readcount
+pkgver=0.8.0
+pkgrel=1
+pkgdesc="count DNA sequence reads in BAM files"
+arch=('i686' 'x86_64')
+url="http://www.genome.umd.edu/jellyfish.html"
+license=('MIT')
+depends=('gcc-libs')
+provides=('bam-readcount')
+conflicts=('bam-readcount')
+source=("https://github.com/genome/bam-readcount/archive/v$pkgver.tar.gz")
+md5sums=('58d72588866f16f658ce4f40a3809af9')
+
+build() {
+
+  cmake $srcdir/bam-readcount-$pkgver
+
+  make
+}
+
+package() {
+  mkdir -p $pkgdir/usr/bin
+  cp -p bin/bam-readcount $pkgdir/usr/bin/
+}
