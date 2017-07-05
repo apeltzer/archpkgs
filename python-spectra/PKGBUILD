@@ -1,0 +1,25 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+
+pkgname='python-spectra'
+pkgver=0.0.6
+pkgrel=1
+pkgdesc="Aggregate results from bioinformatics analyses across many samples into a single report."
+arch=('x86_64')
+url="https://github.com/jsvine/spectra"
+license=('MIT')
+groups=()
+depends=('python')
+makedepends=('python-setuptools')
+provides=('python-spectra')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("https://github.com/jsvine/spectra/archive/v${pkgver}.tar.gz")
+md5sums=('dda5cc9d0035d7b689c6d01485f7b9fd')
+
+package() {
+  cd "$srcdir/spectra-$pkgver"
+  python setup.py install --root="$pkgdir/" --optimize=1
+}
