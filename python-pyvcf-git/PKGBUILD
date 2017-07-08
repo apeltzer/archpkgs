@@ -1,0 +1,24 @@
+# Maintainer: Clint Valentine <valentine.clint@gmail.com>
+pkgname='python-PyVCF-git'
+pkgver=0.6.0
+pkgrel=1
+pkgdesc="A Variant Call Format reader for Python. "
+arch=('x86_64')
+url="https://github.com/jamescasbon/PyVCF"
+license=('Protected')
+groups=()
+depends=('python')
+makedepends=('python-setuptools')
+provides=('python-PyVCF-git')
+conflicts=()
+replaces=()
+backup=()
+options=(!emptydirs)
+install=
+source=("git+https://github.com/jamescasbon/PyVCF.git")
+md5sums=('SKIP')
+
+package() {
+  cd "${srcdir}"/PyVCF
+  python setup.py install --root="${pkgdir}/" --optimize=1
+}

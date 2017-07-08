@@ -10,7 +10,8 @@ url="http://scikit-bio.org/"
 license=('BSD')
 groups=()
 depends=('python')
-makedepends=('python-setuptools' 'python-numpy>=1.9.2')
+makedepends=(
+    'python-setuptools' 'python-numpy>=1.9.2' 'python-future' 'python-pandas>=0.18.0' 'python-cachecontrol>=0.11.5' 'python-matplotlib>=1.4.3' 'python-nose>=1.3.7')
 provides=('python-skbio')
 conflicts=()
 replaces=()
